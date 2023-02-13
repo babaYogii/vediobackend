@@ -8,14 +8,14 @@ console.log(req.body);
 
    let {meetingName,sizeOfMeeting,scheduleDate,user }=req.body;
 //    let meetingdate=new Date(scheduleDate);
-    console.log(scheduleDate)
+    // console.log(neDate("scheduleDate"))
     console.log(meetingName,sizeOfMeeting,scheduleDate)
    const newurl = uuidv4()
-    let meetingEndTime=(parseInt(scheduleDate)+60).toString();
+    let meetingEndTime=(parseInt(scheduleDate)+600000).toString();
         // user=JSON.parse(user)
-    const meetingUrl=`${process.env.REACT_APP_HOST}/ROOM/${newurl}`
+    const meetingUrl=`${process.env.REACT_APP_HOST}/room/${newurl}`
     // console.log(user);
-    scheduleDate=scheduleDate-(18,000,000+1,800,000)
+    // scheduleDate=scheduleDate-(18,000,000+1,800,000)
     const meetingValues=new meetingDetails({meetingName,sizeOfMeeting,scheduleDate,meetingUrl,user,meetingEndTime});
 
 

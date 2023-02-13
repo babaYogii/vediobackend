@@ -37,7 +37,32 @@ exports.isUrlValid=(req,res,next)=>{
     })
 
 
+}
 
+
+
+
+
+exports.safeGaurd=(req,res,next)=>{
+
+    const {meetingUrl}=req.body;
+    console.log(meetingUrl)
+        // res.send(path)
+    meetingDetails.find({meetingUrl}).exec((error,meeting)=>{
+        // console.log(error)
+        if(error) return res.status(400).json({error});
+       console.log(meeting)
+       if(meeting){
+        if(meeting.length===0){
+           return res.status(404).json({message:"No meetings found"})
+         }
+           return res.status(200).json(meeting);
+       }else{
+        return res.status(400).json({message:"Something went wrong"})
+       }
+       
+       
+    })
 
 
 }
