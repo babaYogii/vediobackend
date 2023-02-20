@@ -26,8 +26,9 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
         trim:true
-    },
-    contactNumber:{type:Number,required:true},
+    },confirmPassword:{
+        type:String,
+    }
     
 },{timestamps:true});
 

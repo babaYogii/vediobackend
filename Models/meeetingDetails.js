@@ -25,6 +25,9 @@ const meetingDetails=new mongoose.Schema({
     },meetingUrl:{
         type:String,
     },user:{type : mongoose.Schema.Types.ObjectId,ref:'User',required:true},
+    imp:{
+        type:Boolean
+    }
     
 },{timestamps:true});
 

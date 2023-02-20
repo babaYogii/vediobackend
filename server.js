@@ -17,9 +17,9 @@ mongoose.connect(url).then(()=>{
     console.log("Connected")
 });
 
-
-
-app.use(express.static(path.join(__dirname+'/public')))
+const build=path.join(__dirname+'/public')
+// path.join(__dirname+'/public')
+app.use(express.static(build))
 
 
 app.use(authRoutes);
@@ -29,11 +29,14 @@ app.use(meetingDetails)
 app.get("/",(req,res)=>{
     res.send("Hello from index")
 })
+app.get('*',async(req,res)=>{
+    res.sendFile(path.join(build,'index.html'))
+})
 
 //static file serve on this side
 
 app.set('port',process.env.PORT || 8080)
 
 app.listen(process.env.PORT || 8080,()=>{
-    console.log("Listening on  port 8080")
+    console.log("Listening on  port",process.env.port||8080)
 })

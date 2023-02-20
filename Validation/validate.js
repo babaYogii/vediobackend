@@ -5,8 +5,13 @@ exports.validateSignUpRequest=[
     check('firstName').notEmpty().withMessage('First name is required'),
     check('lastName').notEmpty().withMessage('Last name is required'),
     check('email').isEmail().withMessage("Please enter a valid email"),
-    check('password').isLength({min:6}).withMessage('Enter the password'),
-    check('contactNumber').isLength({min:10,max:10}).withMessage("Enter valid Mobile number")
+    check('password').isLength({min:6,max:10}).withMessage('Enter the password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,10}$/).withMessage('follow the password criteria'),
+    check('confirmPassword').isLength({min:6,max:10}).withMessage('Confirm password is required').custom(async(confirmPassword,{req})=>{
+      const password = req.body.password 
+      if(password !== confirmPassword){
+        throw new Error('Passwords && confirm password must be same')
+      }
+    })
 ]
 
 exports.validateSignInrequest=[
