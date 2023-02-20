@@ -13,7 +13,7 @@ console.log(email)
    const newurl = uuidv4()
    let meetingEndTime=(parseInt(scheduleDate)+600000).toString();
        
-   const meetingUrl=`https://vedioconferencingtechmeets.azurewebsites.net/room/${newurl}`
+   const meetingUrl=`https://techmeets-app.azurewebsites.net/room/${newurl}`
    
    const meetingValues=new meetingDetails({meetingName,sizeOfMeeting,scheduleDate,meetingUrl,user,meetingEndTime,imp});
 
@@ -40,7 +40,7 @@ console.log(email)
 
    product:{
     name:user.fullName,
-    link:'https://vedioconferencingtechmeets.azurewebsites.net'
+    link:'https://techmeets-app.azurewebsites.net'
    }
 
 
