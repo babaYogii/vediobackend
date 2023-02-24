@@ -24,9 +24,12 @@ const meetingDetails=new mongoose.Schema({
         required:true
     },meetingUrl:{
         type:String,
+        unique:true
     },user:{type : mongoose.Schema.Types.ObjectId,ref:'User',required:true},
     imp:{
         type:Boolean
+    },meetingDescription:{
+        type:String
     }
     
 },{timestamps:true});

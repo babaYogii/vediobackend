@@ -6,16 +6,17 @@ const nodemailer = require("nodemailer")
 exports.createMeeting=(req,res)=>{
 
 
-   let {meetingName,sizeOfMeeting,scheduleDate,user,payload,imp }=req.body;
-   let {email}=user
+   let {meetingName,sizeOfMeeting,scheduleDate,user,payload,imp,meetingDescription }=req.body;
+   console.log(meetingDescription)
+   let {email,firstName,lastName}=user
 
 console.log(email)
    const newurl = uuidv4()
    let meetingEndTime=(parseInt(scheduleDate)+600000).toString();
        
-   const meetingUrl=`https://techmeets-app.azurewebsites.net/room/${newurl}`
+   const meetingUrl=`http://localhost:3000/room/${firstName}${lastName}-${meetingName.split(" ")[0]}-${scheduleDate+ Date.now()}`
    
-   const meetingValues=new meetingDetails({meetingName,sizeOfMeeting,scheduleDate,meetingUrl,user,meetingEndTime,imp});
+   const meetingValues=new meetingDetails({meetingName,sizeOfMeeting,meetingDescription,scheduleDate,meetingUrl,user,meetingEndTime,imp});
 
 
 
@@ -27,8 +28,8 @@ console.log(email)
    const config={
     service:'gmail',
     auth: {
-        user:"kodlingeyogesh@gmail.com",
-        pass: "ughhjjheekzqavnf"
+        user:"yogeshkodlinge121@gmail.com",
+        pass: "kprmjrohvmaaarlc"
       },
       port:465,
       host:'smtp.gmail.com'
@@ -39,7 +40,7 @@ console.log(email)
    const mailgen=new Mailgen({theme:'default',
 
    product:{
-    name:user.fullName,
+    name:firstName+" "+lastName,
     link:'https://techmeets-app.azurewebsites.net'
    }
 
@@ -52,10 +53,14 @@ console.log(email)
 
 const response={
     body:{
-        name:"",
-        intro:meetingName.toUpperCase(),
+        name:"Mates",
+        intro:`${meetingName.toUpperCase()}`,
         table:{data:[{Time:date,}]},
-        outro:`Follow the url ${meetingUrl}`,
+        dictionary: {
+            Description:meetingDescription
+        },
+        outro:`Follow the url ${meetingUrl} `,
+        
     }
    }
 
@@ -70,7 +75,7 @@ console.log(email)
 let message={
     from:{email},
     to:emails,
-    text:'Please join the meeting',
+    text:`Join the meeting you are invited by ${firstName} `,
     subject:`You are Invited for ${meetingName}`,
     html:mail
 }
