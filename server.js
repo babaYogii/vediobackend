@@ -32,6 +32,7 @@ app.use(meetingDetails)
 app.get("/",(req,res)=>{
     res.send("Hello from index")
 })
+
 app.get('*',async(req,res)=>{
     res.sendFile(path.join(build,'index.html'))
 })
