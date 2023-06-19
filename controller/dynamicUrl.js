@@ -14,7 +14,7 @@ console.log(email)
    const newurl = uuidv4()
    let meetingEndTime=(parseInt(scheduleDate)+600000).toString();
        
-   const meetingUrl=`http://localhost:3000/room/${firstName}${lastName}-${meetingName.split(" ")[0]}-${scheduleDate+ Date.now()}`
+   const meetingUrl=`http://20.51.174.126/room/${firstName}${lastName}-${meetingName.split(" ")[0]}-${scheduleDate+ Date.now()}`
    
    const meetingValues=new meetingDetails({meetingName,sizeOfMeeting,meetingDescription,scheduleDate,meetingUrl,user,meetingEndTime,imp});
 
