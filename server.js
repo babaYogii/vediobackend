@@ -32,14 +32,15 @@ app.use(meetingDetails)
 app.get("/",(req,res)=>{
     res.send("Hello from index")
 })
+
 app.get('*',async(req,res)=>{
     res.sendFile(path.join(build,'index.html'))
 })
 
 //static file serve on this side
 
-app.set('port',process.env.PORT || 8080)
+app.set('port',process.env.PORT || 8800)
 
-app.listen(process.env.PORT || 8080,()=>{
-    console.log("Listening on  port",process.env.port||8080)
+app.listen(process.env.PORT || 8800,()=>{
+    console.log("Listening on  port",process.env.port||8800)
 })
